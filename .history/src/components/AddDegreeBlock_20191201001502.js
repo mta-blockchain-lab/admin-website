@@ -24,14 +24,14 @@ class AddDegreeBlock extends Component {
   onSerialChange(event) {
     this.setState({
       degreeSerial: event.target.value,
-      degreeSerialIsValid: isEmpty(event.target.value)
+      degreeSerialIsValid: isEmpty(target.value)
     });
   }
 
   onHashChange(event) {
     this.setState({
       degreeHash: event.target.value,
-      degreeHashIsValid: isEmpty(event.target.value)
+      degreeHashIsValid: isEmpty(target.value)
 
     });
   }
@@ -59,10 +59,10 @@ class AddDegreeBlock extends Component {
 
   render() {
     const {degreeHashIsValid, degreeSerialIsValid,  degreeSerial, degreeHash } = this.state;
-    const { addingDegree, addedTx, networkId } = this.props;
+    const { addingDegree, issuedTx, networkId } = this.props;
     
-    const inputSerialMessage = degreeSerialIsValid ? "Số văn bằng không được để trống." : "";
-    const inputHashMessage = degreeHashIsValid ? "Mã hash không được để trống" : "";
+    const inputSerialMessage = "" ? "Số văn bằng không được để trống." : "";
+    const inputHashMessage = "" ? "Mã hash không được để trống" : "";
 
  
     return (
@@ -111,12 +111,12 @@ class AddDegreeBlock extends Component {
           {addingDegree ? "Đang lưu thông tin ..." : "Lưu thông tin"}
         </OrangeButton>
 
-        {addedTx && !addingDegree ? (
+        {issuedTx && !addingDegree ? (
           <div className="mt5">
             <p>🎉 Chứng chỉ đã được thêm vào Blockchain</p>
             <div>
               Mã giao dịch{" "}
-              <HashColor hashee={addedTx} isTx networkId={networkId}/>
+              <HashColor hashee={issuedTx} networkId={networkId} isTx />
             </div>
           </div>
         ) : null}
@@ -129,7 +129,7 @@ export default AddDegreeBlock;
 
 AddDegreeBlock.propTypes = {
   addingDegree: PropTypes.bool,
-  addedTx: PropTypes.string,
+  issuedTx: PropTypes.string,
   handleAddDegree: PropTypes.func,
   networkId: PropTypes.number
 };

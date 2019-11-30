@@ -116,7 +116,7 @@ class AddDegreeBlock extends Component {
             <p>🎉 Chứng chỉ đã được thêm vào Blockchain</p>
             <div>
               Mã giao dịch{" "}
-              <HashColor hashee={addedTx} isTx networkId={networkId}/>
+              <HashColor hashee={issuedTx} networkId={networkId} isTx />
             </div>
           </div>
         ) : null}

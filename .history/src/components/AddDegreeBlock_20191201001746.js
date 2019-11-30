@@ -24,14 +24,14 @@ class AddDegreeBlock extends Component {
   onSerialChange(event) {
     this.setState({
       degreeSerial: event.target.value,
-      degreeSerialIsValid: isEmpty(event.target.value)
+      degreeSerialIsValid: isEmpty(target.value)
     });
   }
 
   onHashChange(event) {
     this.setState({
       degreeHash: event.target.value,
-      degreeHashIsValid: isEmpty(event.target.value)
+      degreeHashIsValid: isEmpty(target.value)
 
     });
   }
@@ -116,7 +116,7 @@ class AddDegreeBlock extends Component {
             <p>🎉 Chứng chỉ đã được thêm vào Blockchain</p>
             <div>
               Mã giao dịch{" "}
-              <HashColor hashee={addedTx} isTx networkId={networkId}/>
+              <HashColor hashee={issuedTx} networkId={networkId} isTx />
             </div>
           </div>
         ) : null}
@@ -129,7 +129,7 @@ export default AddDegreeBlock;
 
 AddDegreeBlock.propTypes = {
   addingDegree: PropTypes.bool,
-  addedTx: PropTypes.string,
+  issuedTx: PropTypes.string,
   handleAddDegree: PropTypes.func,
   networkId: PropTypes.number
 };

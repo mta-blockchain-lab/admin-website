@@ -144,7 +144,6 @@ class AdminContainer extends Component {
       issuingCertificate,
       issuedTx,
       addedTx,
-      addingDegree,
       revokingCertificate,
       revokedTx,
       networkId,
@@ -210,7 +209,7 @@ class AdminContainer extends Component {
               {baseStyle}
               <div className="flex">
                 <div className="w-100 w-50-ns">
-                  <h1 className="mt0">Trang quản trị</h1>
+                  <h1 className="mt0">Admin</h1>
                 </div>
               </div>
               <div className="flex bb pb3">

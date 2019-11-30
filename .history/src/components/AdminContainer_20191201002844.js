@@ -144,7 +144,6 @@ class AdminContainer extends Component {
       issuingCertificate,
       issuedTx,
       addedTx,
-      addingDegree,
       revokingCertificate,
       revokedTx,
       networkId,
@@ -210,7 +209,7 @@ class AdminContainer extends Component {
               {baseStyle}
               <div className="flex">
                 <div className="w-100 w-50-ns">
-                  <h1 className="mt0">Trang quản trị</h1>
+                  <h1 className="mt0">Admin</h1>
                 </div>
               </div>
               <div className="flex bb pb3">
@@ -341,8 +340,7 @@ AdminContainer.propTypes = {
   deployStore: PropTypes.func,
   issueCertificate: PropTypes.func,
   addedTx: PropTypes.string,
-  addingDegree: PropTypes.bool,
-  addDegree: PropTypes.func,
+  addingDegree: PropTypes.func,
   updateStoreAddress: PropTypes.func,
   adminAddress: PropTypes.string,
   accountBalance: PropTypes.number,

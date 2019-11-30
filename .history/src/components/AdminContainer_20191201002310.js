@@ -27,9 +27,7 @@ import {
   getrevokingCertificate,
   getDeploying,
   getIssuingCertificate,
-  getDeployedTx,
-  getAddedTx,
-  getAddingDegree
+  getDeployedTx
 } from "../reducers/admin";
 import { updateNetworkId, getNetworkId } from "../reducers/application";
 import StoreDeployBlock from "./StoreDeployBlock";
@@ -41,7 +39,6 @@ import HashColorInput from "./UI/HashColorInput";
 import Panel from "./UI/Panel";
 import NetworkSelectorContainer from "./NetworkSelectorContainer";
 import ErrorPage from "./ErrorPage";
-import { get } from "http";
 
 const baseStyle = (
   <Global
@@ -143,8 +140,6 @@ class AdminContainer extends Component {
       storeAddress,
       issuingCertificate,
       issuedTx,
-      addedTx,
-      addingDegree,
       revokingCertificate,
       revokedTx,
       networkId,
@@ -210,7 +205,7 @@ class AdminContainer extends Component {
               {baseStyle}
               <div className="flex">
                 <div className="w-100 w-50-ns">
-                  <h1 className="mt0">Trang quản trị</h1>
+                  <h1 className="mt0">Admin</h1>
                 </div>
               </div>
               <div className="flex bb pb3">
@@ -312,8 +307,6 @@ const mapStateToProps = store => ({
   networkId: getNetworkId(store),
   deploying: getDeploying(store),
   deployedTx: getDeployedTx(store),
-  addedTx: getAddedTx(store),
-  addingDegree: getAddingDegree(store),
   issuingCertificate: getIssuingCertificate(store)
 });
 
@@ -340,9 +333,6 @@ AdminContainer.propTypes = {
   loadAdminAddress: PropTypes.func,
   deployStore: PropTypes.func,
   issueCertificate: PropTypes.func,
-  addedTx: PropTypes.string,
-  addingDegree: PropTypes.bool,
-  addDegree: PropTypes.func,
   updateStoreAddress: PropTypes.func,
   adminAddress: PropTypes.string,
   accountBalance: PropTypes.number,
