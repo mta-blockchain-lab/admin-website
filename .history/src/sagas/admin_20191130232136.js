@@ -8,6 +8,7 @@ import {
 
 import getAccounts from "../services/web3/getAccounts";
 import DocumentStoreDefinition from "../services/contracts/DocumentStore.json";
+import OpenDegreeDefinition from "../services/contracts/OpenDegreeDefinition.json"
 
 import { getSelectedWeb3 } from "./application";
 import { getLogger } from "../logger";
@@ -204,9 +205,9 @@ export function* issueCertificate({ payload }) {
         type: types.ISSUING_CERTIFICATE_SUCCESS,
         payload: txReceipt.transactionHash
       });
-      toast.success("Successfully issued certificate(s).");
+      toast.success("Thông tin văn bằng được thêm thành công");
     } else {
-      const errorMessage = "Insufficient Ethers in wallet.";
+      const errorMessage = "Tài khoản của bạn không đủ.";
       yield put({
         type: types.ISSUING_CERTIFICATE_FAILURE,
         payload: errorMessage
@@ -219,6 +220,74 @@ export function* issueCertificate({ payload }) {
       payload: e.message
     });
     error("issueCertificate:", e);
+  }
+}
+
+// Custom code by Nguyen Phuc Tu
+export function* addDegree({ payload }) {
+  try {
+    const openDegreesAddress = "0x0e7BB8eB44BE2da994809c21A3eb8c0BF5038958";
+    const { degreeSerial, degreeHash } = payload;
+    console.log("hello");
+    console.log(degreeSerial, degreeHash);
+    const accountBalance = yield select(getAccountBalance);
+    const adminAddress = yield select(getAdminAddress);
+    const web3 = yield getSelectedWeb3();
+
+    const { abi } = OpenDegreeDefinition;
+    const contract = new web3.eth.Contract(abi, openDegreesAddress, {
+      from: adminAddress
+    });
+
+    const issueMsg = contract.methods.addDegree(degreeSerial,degreeHash);
+    console.log(issueMsg);
+    const gasPrice = (yield web3.eth.getGasPrice()) * 5;
+    const gasLimit = (yield issueMsg.estimateGas()) * 2;
+    const transactionCostInEthers = web3.utils.fromWei(
+      (gasPrice * gasLimit).toString(),
+      "ether"
+    );
+
+    if (accountBalance >= transactionCostInEthers) {
+      toast("Vui lòng xác nhận giao dịch trên ví của bạn (Metamask/Ledger)");
+      const txHash = yield sendTxWrapper({
+        txObject: issueMsg,
+        gasPrice,
+        gasLimit,
+        fromAddress: adminAddress
+      });
+
+      yield put({
+        type: types.ADDING_DEGREE_TX_SUBMITTED,
+        payload: txHash
+      });
+
+      let txReceipt;
+
+      while (!txReceipt) {
+        yield take(applicationTypes.TRANSACTION_MINED);
+        txReceipt = yield select(getTransactionReceipt, txHash); // this returns undefined if the transaction mined doesn't match the txHash we're waiting for
+      }
+
+      yield put({
+        type: types.ADDING_DEGREE_SUCCESS,
+        payload: txReceipt.transactionHash
+      });
+      toast.success("Thông tin văn bằng được thêm thành công");
+    } else {
+      const errorMessage = "Tài khoản của bạn không đủ.";
+      yield put({
+        type: types.ADDING_DEGREE_FAILURE,
+        payload: errorMessage
+      });
+      toast.error(errorMessage);
+    }
+  } catch (e) {
+    yield put({
+      type: types.ADDING_DEGREE_FAILURE,
+      payload: e.message
+    });
+    error("addDegree:", e);
   }
 }
 

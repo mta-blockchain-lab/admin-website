@@ -67,14 +67,14 @@ class StoreIssueBlock extends Component {
           onClick={this.onIssueClick}
           disabled={issuingCertificate}
         >
-          {issuingCertificate ? "Đang lưu thông tin ..." : "Lưu thông tin"}
+          {issuingCertificate ? "Issuing…" : "Issue"}
         </OrangeButton>
 
         {issuedTx && !issuingCertificate ? (
           <div className="mt5">
             <p>🎉 Chứng chỉ đã được thêm vào Blockchain</p>
             <div>
-              Mã giao dịch{" "}
+              Transaction ID{" "}
               <HashColor hashee={issuedTx} networkId={networkId} isTx />
             </div>
           </div>

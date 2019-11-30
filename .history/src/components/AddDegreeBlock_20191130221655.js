@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import HashColor from "./UI/HashColor";
 import HashColorInput from "./UI/HashColorInput";
 import { OrangeButton } from "./UI/Button";
-import { isValidCertificateHash } from "../components/utils";
+import { isValidCertificateHash } from "./utils";
 
-class StoreIssueBlock extends Component {
+class AddDegreeBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,12 +84,12 @@ class StoreIssueBlock extends Component {
   }
 }
 
-export default StoreIssueBlock;
+export default AddDegreeBlock;
 
-StoreIssueBlock.propTypes = {
+AddDegreeBlock.propTypes = {
   issuingCertificate: PropTypes.bool,
   issuedTx: PropTypes.string,
   storeAddress: PropTypes.string,
-  handleCertificateIssue: PropTypes.func,
+  handleAddDegree: PropTypes.func,
   networkId: PropTypes.number
 };

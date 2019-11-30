@@ -12,10 +12,6 @@ export const initialState = {
   issuingCertificate: false,
   issuingError: null,
 
-  addedTx: "",
-  addingDegree: false,
-  addingError: null,
-
   revokedTx: "",
   revokingCertificate: false,
   revokingError: null
@@ -43,11 +39,6 @@ export const types = {
   ISSUING_CERTIFICATE_TX_SUBMITTED: "ISSUING_CERTIFICATE_TX_SUBMITTED",
   ISSUING_CERTIFICATE_SUCCESS: "ISSUING_CERTIFICATE_SUCCESS",
   ISSUING_CERTIFICATE_FAILURE: "ISSUING_CERTIFICATE_FAILURE",
-
-  ADDING_DEGREE: "ADDING_DEGREE",
-  ADDING_DEGREE_TX_SUBMITTED: "ADDING_DEGREE_TX_SUBMITTED",
-  ADDING_DEGREE_SUCCESS: "ADDING_DEGREE_SUCCESS",
-  ADDING_DEGREE_FAILURE: "ADDING_DEGREE_FAILURE",
 
   REVOKING_CERTIFICATE: "REVOKING_CERTIFICATE",
   REVOKING_CERTIFICATE_SUCCESS: "REVOKING_CERTIFICATE_SUCCESS",
@@ -125,29 +116,6 @@ export default function reducer(state = initialState, action) {
         issuingError: action.payload,
         issuedTx: ""
       };
-
-      // Adding degree
-
-    case types.ADDING_DEGREE:
-      return {
-        ...state,
-        addingDegree: true
-      };
-    case types.ADDING_DEGREE_SUCCESS:
-      return {
-        ...state,
-        addingDegree: false,
-        addedTx: action.payload,
-        addingError: null
-      };
-    case types.ADDING_DEGREE_FAILURE:
-      return {
-        ...state,
-        addingDegree: false,
-        addingError: action.payload,
-        addedTx: ""
-      };
-
     case types.REVOKING_CERTIFICATE:
       return {
         ...state,
@@ -206,11 +174,11 @@ export function issueCertificate(payload) {
   };
 }
 
-export function addDegree(payload) {
+export function addDegree(payload){
   return {
-    type: types.ADDING_DEGREE,
+    type:types.ADDING_DEGREE,
     payload
-  };
+  }
 }
 
 export function revokeCertificate(payload) {
@@ -251,10 +219,6 @@ export function getDeployedTx(store) {
 
 export function getIssuingCertificate(store) {
   return store.admin.issuingCertificate;
-}
-
-export function getAddingDegree(store) {
-  return store.admin.addingDegree;
 }
 
 export function getrevokingCertificate(store) {

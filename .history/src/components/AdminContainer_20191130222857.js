@@ -229,9 +229,6 @@ class AdminContainer extends Component {
                     <h3>Thử nghiệm</h3>
                   </Tab>
                   <Tab className="tab pl3">
-                    <h3>Thêm thông tin chứng chỉ:</h3>
-                  </Tab>
-                  <Tab className="tab pl3">
                     <h3>Thêm thông tin văn bằng:</h3>
                   </Tab>
                   <Tab
@@ -315,9 +312,7 @@ const mapDispatchToProps = dispatch => ({
   loadAdminAddress: payload => dispatch(loadAdminAddress(payload)),
   updateNetworkId: () => dispatch(updateNetworkId()),
   deployStore: payload => dispatch(deployStore(payload)),
-
   issueCertificate: payload => dispatch(issueCertificate(payload)),
-  addDegree: payload =>dispatch(addDegree(payload)),
   revokeCertificate: payload => dispatch(revokeCertificate(payload)),
   updateStoreAddress: payload => dispatch(updateStoreAddress(payload))
 });

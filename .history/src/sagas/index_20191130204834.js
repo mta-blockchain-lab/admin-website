@@ -32,16 +32,11 @@ export default function* rootSaga() {
       applicationSaga.addTxHashToPolling
     ),
     takeEvery(
-      adminType.ADDING_DEGREE_TX_SUBMITTED,
-      applicationSaga.addTxHashToPolling
-    ),
-    takeEvery(
       adminType.REVOKING_CERTIFICATE_TX_SUBMITTED,
       applicationSaga.addTxHashToPolling
     ),
     takeEvery(adminType.DEPLOYING_STORE, adminSaga.deployStore),
     takeEvery(adminType.ISSUING_CERTIFICATE, adminSaga.issueCertificate),
-    takeEvery(adminType.ADDING_DEGREE, adminSaga.addDegree),
     takeEvery(adminType.REVOKING_CERTIFICATE, adminSaga.revokeCertificate),
     takeEvery(applicationType.UPDATE_WEB3, adminSaga.networkReset),
     takeEvery(

@@ -20,7 +20,6 @@ import {
   getStoreAddress,
   updateStoreAddress,
   issueCertificate,
-  addDegree,
   getIssuedTx,
   getRevokedTx,
   revokeCertificate,
@@ -33,7 +32,6 @@ import { updateNetworkId, getNetworkId } from "../reducers/application";
 import StoreDeployBlock from "./StoreDeployBlock";
 import StoreIssueBlock from "./StoreIssueBlock";
 import StoreRevokeBlock from "./StoreRevokeBlock";
-import AddDegreeBlock from "./AddDegreeBlock";
 import HashColor from "./UI/HashColor";
 import HashColorInput from "./UI/HashColorInput";
 import Panel from "./UI/Panel";
@@ -83,7 +81,6 @@ class AdminContainer extends Component {
     this.handleStoreDeploy = this.handleStoreDeploy.bind(this);
     this.storeAddressOnChange = this.storeAddressOnChange.bind(this);
     this.handleCertificateIssue = this.handleCertificateIssue.bind(this);
-    this.handleAddDegree = this.handleAddDegree.bind(this);
     this.handleCertificateRevoke = this.handleCertificateRevoke.bind(this);
 
     this.state = {
@@ -119,10 +116,6 @@ class AdminContainer extends Component {
 
   handleCertificateIssue(payload) {
     this.props.issueCertificate(payload);
-  }
-
-  handleAddDegree(payload){
-    this.props.addDegree(payload);
   }
 
   handleCertificateRevoke(payload) {
@@ -229,9 +222,6 @@ class AdminContainer extends Component {
                     <h3>Thử nghiệm</h3>
                   </Tab>
                   <Tab className="tab pl3">
-                    <h3>Thêm thông tin chứng chỉ:</h3>
-                  </Tab>
-                  <Tab className="tab pl3">
                     <h3>Thêm thông tin văn bằng:</h3>
                   </Tab>
                   <Tab
@@ -263,15 +253,6 @@ class AdminContainer extends Component {
                     ) : (
                       <div className="red">Enter a store address first.</div>
                     )}
-                  </TabPanel>
-                  <TabPanel>
-                      <AddDegreeBlock
-                        networkId={networkId}
-                        issuedTx={issuedTx}
-                        storeAddress={storeAddress}
-                        handleAddDegree={this.handleAddDegree}
-                        issuingCertificate={issuingCertificate}
-                      />
                   </TabPanel>
                   <TabPanel>
                     {storeAddress ? (
@@ -315,9 +296,7 @@ const mapDispatchToProps = dispatch => ({
   loadAdminAddress: payload => dispatch(loadAdminAddress(payload)),
   updateNetworkId: () => dispatch(updateNetworkId()),
   deployStore: payload => dispatch(deployStore(payload)),
-
   issueCertificate: payload => dispatch(issueCertificate(payload)),
-  addDegree: payload =>dispatch(addDegree(payload)),
   revokeCertificate: payload => dispatch(revokeCertificate(payload)),
   updateStoreAddress: payload => dispatch(updateStoreAddress(payload))
 });

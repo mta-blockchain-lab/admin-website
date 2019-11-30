@@ -253,10 +253,6 @@ export function getIssuingCertificate(store) {
   return store.admin.issuingCertificate;
 }
 
-export function getAddingDegree(store) {
-  return store.admin.addingDegree;
-}
-
 export function getrevokingCertificate(store) {
   return store.admin.revokingCertificate;
 }

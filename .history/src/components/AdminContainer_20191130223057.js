@@ -315,9 +315,7 @@ const mapDispatchToProps = dispatch => ({
   loadAdminAddress: payload => dispatch(loadAdminAddress(payload)),
   updateNetworkId: () => dispatch(updateNetworkId()),
   deployStore: payload => dispatch(deployStore(payload)),
-
   issueCertificate: payload => dispatch(issueCertificate(payload)),
-  addDegree: payload =>dispatch(addDegree(payload)),
   revokeCertificate: payload => dispatch(revokeCertificate(payload)),
   updateStoreAddress: payload => dispatch(updateStoreAddress(payload))
 });

@@ -67,7 +67,7 @@ class StoreIssueBlock extends Component {
           onClick={this.onIssueClick}
           disabled={issuingCertificate}
         >
-          {issuingCertificate ? "Đang lưu thông tin ..." : "Lưu thông tin"}
+          {issuingCertificate ? "Issuing…" : "Issue"}
         </OrangeButton>
 
         {issuedTx && !issuingCertificate ? (
