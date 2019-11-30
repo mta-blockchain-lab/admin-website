@@ -108,11 +108,6 @@ export default class HashColor extends React.Component {
           ? `https://kovan.etherscan.io/tx/${hash}`
           : `https://kovan.etherscan.io/address/${hash}`;
         break;
-      case 89:
-          url = isTx
-          ? `https://scan.testnet.tomochain.com/tx/${hash}`
-          : `https://scan.testnet.tomochain.com/address/${hash}`;
-        break;
       default:
         HashColor.copyToClipboard(hash);
         return;

@@ -219,16 +219,16 @@ class AdminContainer extends Component {
                     className="tab pl3"
                     style={{ borderTopLeftRadius: "5px" }}
                   >
-                    <h3>Thử nghiệm</h3>
+                    <h3>Deploy new instance</h3>
                   </Tab>
                   <Tab className="tab pl3">
-                    <h3>Thêm thông tin văn bằng:</h3>
+                    <h3>Issue certificate batch</h3>
                   </Tab>
                   <Tab
                     className="tab pl3"
                     style={{ borderBottomLeftRadius: "5px" }}
                   >
-                    <h3>Thu hồi văn bằng</h3>
+                    <h3>Revoke certificate</h3>
                   </Tab>
                 </TabList>
                 <div className="w-70 pa4 pl5">

@@ -204,9 +204,9 @@ export function* issueCertificate({ payload }) {
         type: types.ISSUING_CERTIFICATE_SUCCESS,
         payload: txReceipt.transactionHash
       });
-      toast.success("Thông tin văn bằng được thêm thành công");
+      toast.success("Successfully issued certificate(s).");
     } else {
-      const errorMessage = "Tài khoản của bạn không đủ.";
+      const errorMessage = "Insufficient Ethers in wallet.";
       yield put({
         type: types.ISSUING_CERTIFICATE_FAILURE,
         payload: errorMessage
