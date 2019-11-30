@@ -7,7 +7,7 @@ import { faintBlue } from "../styles/variables";
 const Meta = () => (
   <div>
     <Head>
-      <title>Hệ thống quản lý văn bằng - OpenDegrees - Trang quản trị</title>
+      <title>OpenCerts - Admin Panel</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
       <link
