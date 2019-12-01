@@ -1,7 +1,6 @@
 export const initialState = {
   adminAddress: "",
   storeAddress: "",
-  contractAddress:"0xfBEFa24A40C8D1a8582cE9aD4D9B960aba174BC7",
 
   accountBalance: 0,
 
@@ -16,9 +15,6 @@ export const initialState = {
   addedTx: "",
   addingDegree: false,
   addingError: null,
-
-  revokingDegree: false,
-  revokingError: null,
 
   revokedTx: "",
   revokingCertificate: false,
@@ -244,9 +240,7 @@ export function addDegree(payload) {
   };
 }
 
-
-
-export function revokeDegree(payload) {
+export function revokingDegree(payload) {
   return {
     type: types.REVOKING_DEGREE,
     payload
@@ -265,9 +259,6 @@ export function getAdminAddress(store) {
   return store.admin.adminAddress;
 }
 
-export function getContractAddress(store){
-  return store.admin.contractAddress;
-}
 export function getStoreAddress(store) {
   return store.admin.storeAddress;
 }

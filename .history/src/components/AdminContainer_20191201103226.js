@@ -31,9 +31,7 @@ import {
   getDeployedTx,
   getAddedTx,
   getAddingDegree,
-  getRevokingDegree,
-
-  getContractAddress
+  getRevokingDegree
 } from "../reducers/admin";
 import { updateNetworkId, getNetworkId } from "../reducers/application";
 // import StoreDeployBlock from "./StoreDeployBlock";
@@ -88,12 +86,12 @@ class AdminContainer extends Component {
   constructor(props) {
     super(props);
     this.refreshCurrentAddress = this.refreshCurrentAddress.bind(this);
-    // this.handleStoreDeploy = this.handleStoreDeploy.bind(this);
-    // this.storeAddressOnChange = this.storeAddressOnChange.bind(this);
-    // this.handleCertificateIssue = this.handleCertificateIssue.bind(this);
+    this.handleStoreDeploy = this.handleStoreDeploy.bind(this);
+    this.storeAddressOnChange = this.storeAddressOnChange.bind(this);
+    this.handleCertificateIssue = this.handleCertificateIssue.bind(this);
     this.handleAddDegree = this.handleAddDegree.bind(this);
     this.handleRevokeDegree = this.handleRevokeDegree.bind(this);
-    // this.handleCertificateRevoke = this.handleCertificateRevoke.bind(this);
+    this.handleCertificateRevoke = this.handleCertificateRevoke.bind(this);
 
     this.state = {
       localStoreAddress: ""
@@ -114,21 +112,21 @@ class AdminContainer extends Component {
     }
   }
 
-  // storeAddressOnChange(event) {
-  //   const address = event.target.value;
-  //   this.setState({ localStoreAddress: address });
-  //   if (isValidAddress(address)) {
-  //     this.props.updateStoreAddress(address);
-  //   }
-  // }
+  storeAddressOnChange(event) {
+    const address = event.target.value;
+    this.setState({ localStoreAddress: address });
+    if (isValidAddress(address)) {
+      this.props.updateStoreAddress(address);
+    }
+  }
 
-  // handleStoreDeploy(payload) {
-  //   this.props.deployStore(payload);
-  // }
+  handleStoreDeploy(payload) {
+    this.props.deployStore(payload);
+  }
 
-  // handleCertificateIssue(payload) {
-  //   this.props.issueCertificate(payload);
-  // }
+  handleCertificateIssue(payload) {
+    this.props.issueCertificate(payload);
+  }
 
   handleAddDegree(payload){
     this.props.addDegree(payload);
@@ -138,9 +136,9 @@ class AdminContainer extends Component {
     this.props.revokeDegree(payload);
   }
 
-  // handleCertificateRevoke(payload) {
-  //   this.props.revokeCertificate(payload);
-  // }
+  handleCertificateRevoke(payload) {
+    this.props.revokeCertificate(payload);
+  }
 
   refreshCurrentAddress() {
     this.props.loadAdminAddress();
@@ -150,18 +148,17 @@ class AdminContainer extends Component {
     const {
       adminAddress,
       accountBalance,
-      contractAddress,
-      // storeAddress,
-      // issuingCertificate,
-      // issuedTx,
+      storeAddress,
+      issuingCertificate,
+      issuedTx,
       addedTx,
       addingDegree,
       revokingDegree,
-      // revokingCertificate,
+      revokingCertificate,
       revokedTx,
       networkId,
-      // deploying,
-      // deployedTx
+      deploying,
+      deployedTx
     } = this.props;
 
     return (
@@ -227,8 +224,14 @@ class AdminContainer extends Component {
               </div>
               <div className="flex bb pb3">
                 <div className="w-100  w-50-l">
-                  <h3>Hợp đồng thông minh (smartcontract):</h3>
-                  <HashColor hashee={contractAddress} networkId={networkId} />
+                  <h3>Store address: <a href="#">0x123</a></h3>
+                  <HashColorInput
+                    variant="rounded"
+                    type="address"
+                    value={this.state.localStoreAddress}
+                    onChange={this.storeAddressOnChange}
+                    placeholder="Enter existing (0x…), or deploy new instance"
+                  />
                 </div>
               </div>
               <Tabs className="flex flex-row w-100">
@@ -304,7 +307,6 @@ class AdminContainer extends Component {
 }
 
 const mapStateToProps = store => ({
-  contractAddress: getContractAddress(store),
   adminAddress: getAdminAddress(store),
   accountBalance: getAccountBalance(store),
   storeAddress: getStoreAddress(store),
@@ -343,8 +345,8 @@ AdminContainer.propTypes = {
   deployedTx: PropTypes.string,
   updateNetworkId: PropTypes.func,
   loadAdminAddress: PropTypes.func,
-  // deployStore: PropTypes.func,
-  // issueCertificate: PropTypes.func,
+  deployStore: PropTypes.func,
+  issueCertificate: PropTypes.func,
   addedTx: PropTypes.string,
   addingDegree: PropTypes.bool,
   addDegree: PropTypes.func,
@@ -353,13 +355,12 @@ AdminContainer.propTypes = {
   revokeDegree: PropTypes.func,
   updateStoreAddress: PropTypes.func,
   adminAddress: PropTypes.string,
-  universityCode: PropTypes.string,
   accountBalance: PropTypes.number,
   storeAddress: PropTypes.string,
-  // issuingCertificate: PropTypes.bool,
-  // issuedTx: PropTypes.string,
-  // revokingCertificate: PropTypes.bool,
+  issuingCertificate: PropTypes.bool,
+  issuedTx: PropTypes.string,
+  revokingCertificate: PropTypes.bool,
   // revokedTx: PropTypes.string,
-  // revokeCertificate: PropTypes.func,
+  revokeCertificate: PropTypes.func,
   networkId: PropTypes.number
 };

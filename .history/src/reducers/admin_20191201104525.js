@@ -265,8 +265,8 @@ export function getAdminAddress(store) {
   return store.admin.adminAddress;
 }
 
-export function getContractAddress(store){
-  return store.admin.contractAddress;
+export function getContractAddress(){
+  return contractAddress;
 }
 export function getStoreAddress(store) {
   return store.admin.storeAddress;

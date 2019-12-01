@@ -150,7 +150,6 @@ class AdminContainer extends Component {
     const {
       adminAddress,
       accountBalance,
-      contractAddress,
       // storeAddress,
       // issuingCertificate,
       // issuedTx,
@@ -228,7 +227,7 @@ class AdminContainer extends Component {
               <div className="flex bb pb3">
                 <div className="w-100  w-50-l">
                   <h3>Hợp đồng thông minh (smartcontract):</h3>
-                  <HashColor hashee={contractAddress} networkId={networkId} />
+                  <HashColor hashee={adminAddress} networkId={networkId} />
                 </div>
               </div>
               <Tabs className="flex flex-row w-100">
