@@ -51,7 +51,7 @@ class ErrorPage extends Component {
                 <a href="http://fit.mta.edu.vn/">
                   here
                 </a>{" "}
-                để được hỗ trợ
+                để được hỗ trơ
               </p>
               <OrangeButton
                 variant="pill"

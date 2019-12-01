@@ -47,11 +47,11 @@ class ErrorPage extends Component {
           {!showWalletProviderSelector ? (
             <div>
               <p>
-                Liên hệ {" "}
-                <a href="http://fit.mta.edu.vn/">
+                Please click{" "}
+                <a href="https://docs.opencerts.io/appendix_test_accounts.html">
                   here
                 </a>{" "}
-                để được hỗ trợ
+                and follow the instructions to install a test wallet.
               </p>
               <OrangeButton
                 variant="pill"

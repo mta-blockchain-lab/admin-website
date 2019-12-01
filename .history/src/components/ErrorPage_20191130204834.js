@@ -43,33 +43,33 @@ class ErrorPage extends Component {
             src={"../../static/images/wallet-error.svg"}
             style={{ width: "165px" }}
           />
-          <h1>Không thể tương tác với blockchain do vấn đề về ví</h1>
+          <h1>Admin wallet address not found.</h1>
           {!showWalletProviderSelector ? (
             <div>
               <p>
-                Liên hệ {" "}
-                <a href="http://fit.mta.edu.vn/">
+                Please click{" "}
+                <a href="https://docs.opencerts.io/appendix_test_accounts.html">
                   here
                 </a>{" "}
-                để được hỗ trợ
+                and follow the instructions to install a test wallet.
               </p>
               <OrangeButton
                 variant="pill"
                 onClick={this.toggleWalletProviderSelector}
                 className="danger"
               >
-                Thay đổi ví
+                Change Wallet Provider
               </OrangeButton>
               <OrangeOutlineButton
                 variant="pill"
                 onClick={() => this.props.loadAdminAddress()}
               >
-                Thử lại
+                Retry
               </OrangeOutlineButton>
             </div>
           ) : (
             <div>
-              <p>Chọn nhà cung cấp ví khác</p>
+              <p>Select another wallet provider.</p>
               <WalletProviderSelector />
             </div>
           )}
