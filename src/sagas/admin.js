@@ -226,7 +226,7 @@ export function* issueCertificate({ payload }) {
 // Custom code by Nguyen Phuc Tu
 export function* addDegree({ payload }) {
   try {
-    const openDegreesAddress = "0xbd3810825D52121e5578E3Fd1595a605d65BB101";
+    const openDegreesAddress = "0x1537052A340bB6cE59D5Ba69F1619646900Ea59A";
     const { degreeSerial, degreeHash } = payload;
     console.log("hello");
     console.log(degreeSerial, degreeHash);
